@@ -6,7 +6,7 @@ from PIL import Image, ImageOps
 import os
 
 # Load model
-model_path = 'model.h5'
+model_path = 'weather_classifier_model.h5'
 if not os.path.exists(model_path):
     raise FileNotFoundError(f"Model file not found: {model_path}")
 
