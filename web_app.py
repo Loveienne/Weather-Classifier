@@ -24,7 +24,7 @@ model = load_model(model_path)
 print(f"Model {model_path} exists")
 
 # Function to predict
-def predict(img, model):
+def predict(img):
     image = ImageOps.fit(img, (256, 256))
     img_array = img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
@@ -44,7 +44,7 @@ file_upload = st.file_uploader("Choose an image...", type=["jpeg", "jpg", "png"]
 if file_upload is not None:
     image = Image.open(file_upload)
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    prediction = predict(image, model)
+    prediction = predict(image)
     
     try:
         st.write(f"Image is a {prediction}")
