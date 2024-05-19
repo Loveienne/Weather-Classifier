@@ -7,9 +7,23 @@ import os
 
 # Load model
 model_path = 'weather_classifier_model.h5'
-print(f"Loading model from: {model_path}")
+# Check if the model file exists
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model file not found: {model_path}")
 
-model = load_model(model_path)
+# Check if the file is a valid HDF5 file
+try:
+    with h5py.File(model_path, 'r') as f:
+        print("File is a valid HDF5 file.")
+except OSError as e:
+    print(f"File is not a valid HDF5 file or is corrupted: {e}")
+
+# If the file is valid, load the model
+try:
+    model = load_model(model_path)
+    print("Model loaded successfully.")
+except Exception as e:
+    print(f"Error loading model: {e}")
 
 # Function to predict
 def predict(image):
