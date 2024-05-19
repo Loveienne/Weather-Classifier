@@ -43,10 +43,10 @@ if file_upload is not None:
     image = Image.open(file_upload)
     st.image(image, caption='Uploaded Image', use_column_width=True)
     try:
-    model = load_model(model_path)
-    print("Model loaded successfully.")
-except Exception as e:
-    print(f"Error loading model: {e}")
+        model = load_model(model_path)
+        print("Model loaded successfully.")
+    except Exception as e:
+        print(f"Error loading model: {e}")
     prediction = predict(image, model)
     
     try:
