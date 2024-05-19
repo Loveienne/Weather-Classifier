@@ -29,7 +29,7 @@ def predict(img):
     img_array = img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.0
-    prediction = model.predict(img_array)
+    predictions = model.predict(img_array)
     class_index = np.argmax(predictions, axis=1)[0]
     class_names = ['Cloudy', 'Rain', 'Shine', 'Sunrise']
   
