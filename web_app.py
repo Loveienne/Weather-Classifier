@@ -11,7 +11,12 @@ if not os.path.exists(model_path):
     raise FileNotFoundError(f"Model file not found: {model_path}")
 
 print(f"Loading model from: {model_path}")
-model = load_model(model_path)
+
+try:
+    model = load_model(model_path)
+    print("Model loaded successfully.")
+except Exception as e:
+    print(f"Error loading model: {e}")
 
 # Function to predict
 def predict(image):
