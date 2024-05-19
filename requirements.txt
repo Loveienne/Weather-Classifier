@@ -1,4 +1,6 @@
 streamlit
+keras
 tensorflow
 opencv-python
 opencv-python-headless
+h5py
