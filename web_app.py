@@ -38,16 +38,17 @@ st.write("Upload an image to classify")
 
 file_upload = st.file_uploader("Choose an image...", type=["jpeg", "jpg", "png"])
 
+try:
+    model = load_model(model_path)
+    prediction = predict(image, model)
+    print("Model loaded successfully.") 
+except Exception as e:
+    print(f"Error loading model: {e}")
 
 if file_upload is not None:
     image = Image.open(file_upload)
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    try:
-        model = load_model(model_path)
-        prediction = predict(image, model)
-        print("Model loaded successfully.")
-    except Exception as e:
-        print(f"Error loading model: {e}")
+    
     
     try:
         st.write(f"Image is a {prediction}")
