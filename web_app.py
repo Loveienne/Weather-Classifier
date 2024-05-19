@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
-from PIL import Image
+from PIL import Image, ImageOps
 import os
 
 # Load model
@@ -20,7 +20,7 @@ except Exception as e:
 
 # Function to predict
 def predict(image):
-    image = load_image(image, target_size=(256, 256))
+    image = ImageOps(image, (256, 256))
     img_array = img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.0
