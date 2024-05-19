@@ -20,7 +20,7 @@ except Exception as e:
 
 # Function to predict
 def predict(image):
-    image = ImageOps(image, (256, 256))
+    image = ImageOps.fit(image, (256, 256))
     img_array = img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.0
