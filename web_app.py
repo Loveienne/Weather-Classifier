@@ -47,6 +47,6 @@ if file_upload is not None:
     prediction = predict(image)
     
     try:
-        st.write(f"Image is a {prediction}")
+        st.success(f"Prediction: {prediction}")
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
