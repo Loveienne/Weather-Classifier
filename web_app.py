@@ -9,11 +9,7 @@ import os
 model_path = 'weather_classifier_model.h5'
 print(f"Loading model from: {model_path}")
 
-try:
-    model = load_model(model_path)
-    print("Model loaded successfully.")
-except Exception as e:
-    print(f"Error loading model: {e}")
+model = load_model(model_path)
 
 # Function to predict
 def predict(image):
