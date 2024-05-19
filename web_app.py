@@ -44,10 +44,10 @@ if file_upload is not None:
     st.image(image, caption='Uploaded Image', use_column_width=True)
     try:
         model = load_model(model_path)
+        prediction = predict(image, model)
         print("Model loaded successfully.")
     except Exception as e:
         print(f"Error loading model: {e}")
-    prediction = predict(image, model)
     
     try:
         st.write(f"Image is a {prediction}")
