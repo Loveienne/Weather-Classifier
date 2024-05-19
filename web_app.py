@@ -19,7 +19,7 @@ except Exception as e:
     print(f"Error loading model: {e}")
 
 # Function to predict
-def predict(image):
+def predict(image, model):
     image = ImageOps.fit(image, (256, 256))
     img_array = img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
@@ -42,7 +42,7 @@ if file_upload is not None:
     st.image(image, caption='Uploaded Image', use_column_width=True)
     st.write("Classifying...")
 
-    prediction = predict(image)
+    prediction = predict(image, model)
     
     try:
         st.write(f"Image is a {prediction}")
