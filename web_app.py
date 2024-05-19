@@ -20,16 +20,9 @@ try:
 except OSError as e:
     print(f"File is not a valid HDF5 file or is corrupted: {e}")
 
-# If the file is valid, load the model
-try:
-    model = load_model(model_path)
-    print("Model loaded successfully.")
-except Exception as e:
-    print(f"Error loading model: {e}")
-
 # Function to predict
-def predict(image):
-    image = ImageOps.fit(image, (256, 256))
+def predict(img, model):
+    image = ImageOps.fit(img, (256, 256))
     img_array = img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.0
@@ -49,9 +42,12 @@ file_upload = st.file_uploader("Choose an image...", type=["jpeg", "jpg", "png"]
 if file_upload is not None:
     image = Image.open(file_upload)
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    st.write("Classifying...")
-
-    prediction = predict(image)
+    try:
+    model = load_model(model_path)
+    print("Model loaded successfully.")
+except Exception as e:
+    print(f"Error loading model: {e}")
+    prediction = predict(image, model)
     
     try:
         st.write(f"Image is a {prediction}")
