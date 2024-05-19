@@ -10,6 +10,7 @@ model_path = 'model.h5'
 if not os.path.exists(model_path):
     raise FileNotFoundError(f"Model file not found: {model_path}")
 
+print(f"Loading model from: {model_path}")
 model = load_model(model_path)
 
 # Function to predict
